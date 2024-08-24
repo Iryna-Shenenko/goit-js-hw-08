@@ -69,29 +69,34 @@ const gallery = document.querySelector('ul.gallery');
 
 
 const galleryMarkup = images.map(({ preview, original, description }) => {
-    return `
-<li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
-    <img
-      class="gallery-image"
-      src="preview"
-      data-source="original"
-      alt="description"
-    />
-  </a>
-</li>
-`;
+    
+   // Створюємо <li> елемент
+  const li = document.createElement('li'); 
 
+  // Створюємо <a> елемент
+  const link = document.createElement('a');
+  link.href = original;
+  link.classList.add('gallery_link');
+
+  // Створюємо <img> елемент
+  const img = document.createElement('img'); 
+  img.src = preview;
+  img.alt = description; 
+  img.dataset.source = original;
+  
+
+  link.appendChild(img); // Додаємо <img> в <a>
+  li.appendChild(link);
+  return li;
 });
+gallery.append(...galleryMarkup);
 
-gallery.innerHTML = galleryMarkup;
+gallery.style.display = 'flex';
+gallery.style.flexWrap = 'wrap';
+gallery.style.height = '696px';
+gallery.style.listStyleType = 'none';
+gallery.style.gap = '24px';
 
-// Prevent default behavior of link clicks
-gallery.addEventListener('click', (event) => {
-  event.preventDefault();
-  if (event.target.nodeName === 'IMG') {
-    const largeImageUrl = event.target.dataset.source;
-    // Add any additional logic to handle the image click here
-    console.log('Large image URL:', largeImageUrl);
-  }
+ gallery.addEventListener('click', (event) => {
+event.preventDefault();
 });
