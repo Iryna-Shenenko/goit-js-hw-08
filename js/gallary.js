@@ -91,12 +91,17 @@ const galleryMarkup = images.map(({ preview, original, description }) => {
 });
 gallery.append(...galleryMarkup);
 
-gallery.style.display = 'flex';
-gallery.style.flexWrap = 'wrap';
-gallery.style.height = '696px';
-gallery.style.listStyleType = 'none';
-gallery.style.gap = '24px';
 
- gallery.addEventListener('click', (event) => {
-event.preventDefault();
+
+gallery.addEventListener('click', (event) => {
+  event.preventDefault();
+ 
+  const target = event.target; // Отримуємо елемент, по якому був клік
+  
+  if (target.nodeName !== 'IMG') return; // Перевіряємо, що клік був саме по зображенню
+  
+  const largeImageURL = target.dataset.source; // Отримуємо посилання на велике зображення з data-атрибуту
+  
+  console.log(largeImageURL);
 });
+
