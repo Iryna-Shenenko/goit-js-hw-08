@@ -93,15 +93,22 @@ gallery.append(...galleryMarkup);
 
 
 
-gallery.addEventListener('click', (event) => {
+gallery.addEventListener('click', function (event) {
   event.preventDefault();
  
   const target = event.target; // Отримуємо елемент, по якому був клік
   
-  if (target.nodeName !== 'IMG') return; // Перевіряємо, що клік був саме по зображенню
+  if (event.target.tagName === 'IMG') {  // Перевіряємо, що клік був саме по зображенню
   
-  const largeImageURL = target.dataset.source; // Отримуємо посилання на велике зображення з data-атрибуту
-  
-  console.log(largeImageURL);
+    const largeImageURL = target.dataset.source;
+    // Отримуємо посилання на велике зображення з data-атрибуту
+    console.log(largeImageURL);
+
+    basicLightbox.create(`
+		<img width="1400" height="900" src="${largeImageURL}">
+	`).show();
+}
 });
+
+
 

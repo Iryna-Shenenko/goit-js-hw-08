@@ -18,8 +18,13 @@ ul.gallery img {
     height: 300px;
     object-fit: cover;
     display: block;
+
 }
 
+img:hover,
+img:focus {
+    transform: scale(1.05);
+}
 
 
 
