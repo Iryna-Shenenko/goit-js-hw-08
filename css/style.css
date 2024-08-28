@@ -25,26 +25,3 @@ img:hover,
 img:focus {
     transform: scale(1.05);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.gallery-image {
-    width: 100%;
-    max-width: 360px;
-    height: 300px;
-
-}
